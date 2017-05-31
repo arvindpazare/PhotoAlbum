@@ -21,6 +21,7 @@ public class ApplicationStarter implements ApplicationStarterIfc {
     public static final String QUIT = "q";
     public static final String INPUT_CONSOLE = "\n>";
     public static final String NO_DATA_FOUND_FOR_ALBUM_ID_S = "No data found for album id : %s";
+    public static final String FORMAT = ">";
 
     @Autowired
     private PhotoAlbumServiceIfc photoAlbumServiceIfc;
@@ -47,7 +48,7 @@ public class ApplicationStarter implements ApplicationStarterIfc {
             } else if (QUIT.equalsIgnoreCase(albumId)) {
                 exitApplication.exit(0);
             } else {
-                printWriter.printf(INVALID_ID, albumId + "\n");
+                printWriter.printf(INVALID_ID, albumId + "\n>");
             }
         } while (photoAlbumConsole.isSystemConsolePresent());
     }
@@ -60,7 +61,7 @@ public class ApplicationStarter implements ApplicationStarterIfc {
         List<PhotoAlbum> photoAlbums = photoAlbumServiceIfc.getPhotoAlbumById(Long.valueOf(albumId));
         if (photoAlbums.size() > 0) {
             photoAlbums.stream().forEach(e -> printWriter.format("[" + e.getId() + "]" + " " + e.getTitle() + "\n"));
-            printWriter.print(">");
+            printWriter.printf(FORMAT);
         } else {
             printWriter.printf(NO_DATA_FOUND_FOR_ALBUM_ID_S, albumId + "\n>");
         }
