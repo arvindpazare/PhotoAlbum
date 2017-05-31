@@ -53,6 +53,17 @@ public class ApplicationStarterTest extends TestCase {
         Mockito.verify(exitApplication, atLeastOnce()).exit(0);
     }
 
+    /*
+    @Test
+    public void testShouldNotProcessOrQuitOnInvalidInput() throws Exception {
+        when(photoAlbumConsole.isSystemConsolePresent()).thenReturn(false);
+        when(photoAlbumConsole.readFromConsole()).thenReturn("3x");
+        applicationStarter.start();
+        Mockito.verify(exitApplication, never()).exit(0);
+        Mockito.verify(photoAlbumServiceIfc, never()).getPhotoAlbumById(anyLong());
+    }
+    */
+    
     @Before
     public void initMocks() {
         MockitoAnnotations.initMocks(this);
