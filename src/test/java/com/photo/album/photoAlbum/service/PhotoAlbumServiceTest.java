@@ -24,7 +24,6 @@ import static org.mockito.Mockito.when;
 public class PhotoAlbumServiceTest extends TestCase {
 
     @InjectMocks
-    @Spy
     private PhotoAlbumService photoAlbumService;
 
     @Mock

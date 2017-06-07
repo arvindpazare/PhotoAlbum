@@ -37,6 +37,12 @@ public class ApplicationStarterTest extends TestCase {
     @Mock
     private ExitApplication exitApplication;
 
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+        when(photoAlbumServiceIfc.getPhotoAlbumById(anyLong())).thenReturn(new ArrayList<PhotoAlbum>());
+    }
+
     @Test
     public void testShouldReturnDataFromRestService() throws Exception {
         when(photoAlbumConsole.isSystemConsolePresent()).thenReturn(false);
@@ -53,10 +59,5 @@ public class ApplicationStarterTest extends TestCase {
         Mockito.verify(exitApplication, atLeastOnce()).exit(0);
     }
 
-    @Before
-    public void initMocks() {
-        MockitoAnnotations.initMocks(this);
-        when(photoAlbumServiceIfc.getPhotoAlbumById(anyLong())).thenReturn(new ArrayList<PhotoAlbum>());
-    }
 
 }
